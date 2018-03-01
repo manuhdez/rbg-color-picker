@@ -4,6 +4,8 @@ let winner = "";
 const guess = document.querySelector('#guess');
 const squares = document.querySelectorAll('.square');
 const newColors = document.querySelector('#change-colors');
+const messageDisplay = document.querySelector('.result');
+const header = document.querySelector('.header');
 
 const generateColor = () => {
     let randomRed = Math.floor(Math.random() * 255);
@@ -36,19 +38,24 @@ newColors.addEventListener('click', function(){
     squares.forEach( square => {
         square.style.opacity = "1";
     });
+    messageDisplay.textContent = "";
 });
 
 squares.forEach( square => {
     square.addEventListener('click', function(){
         let currentColor = this.style.backgroundColor;
         if (currentColor === winner) {
-            newSquaresColor();
-            pickWinnerColor();
-            squares.forEach( square => {
-                square.style.opacity = "1";
-            });
+            // newSquaresColor();
+            // pickWinnerColor();
+            // squares.forEach( square => {
+            //     square.style.opacity = "1";
+            // });
+            messageDisplay.textContent = "You're right!";
+            header.style.backgroundColor = winner;
+            header.style.color = "#fff";
         } else {
             this.style.opacity = "0";
+            messageDisplay.textContent = "Try again";
         }
     });
 })
